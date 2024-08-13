@@ -10758,30 +10758,55 @@
         }));
 
         const searchInput = document.getElementById('searchInput');
-        const resultsDiv = document.getElementById('results');
+    const resultsContainer = document.getElementById('results');
 
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            const filteredData = naicsData.filter(item => 
-                item.code.includes(searchTerm) || 
-                item.title.toLowerCase().includes(searchTerm)
-            );
+    function searchNaics(query) {
+        query = query.toLowerCase();
+        return naicsData.filter(item => 
+            item.code.includes(query) ||
+            item.title.toLowerCase().includes(query) ||
+            item.description.toLowerCase().includes(query)
+        );
+    }
 
-            displayResults(filteredData);
+    function displayResults(results) {
+        resultsContainer.innerHTML = '';
+        results.forEach(item => {
+            const resultItem = document.createElement('div');
+            resultItem.classList.add('result-item');
+            resultItem.innerHTML = `
+                <h3>${item.code} - ${item.title}</h3>
+                <p>${item.description}</p>
+            `;
+            resultsContainer.appendChild(resultItem);
         });
+    }
 
-        function displayResults(data) {
-            resultsDiv.innerHTML = '';
-            data.forEach(item => {
-                const resultItem = document.createElement('div');
-                resultItem.className = 'result-item';
-                resultItem.innerHTML = `
-                    <h3>${item.code} - ${item.title}</h3>
-                    <p>${item.description}</p>
-                `;
-                resultsDiv.appendChild(resultItem);
-            });
+    searchInput.addEventListener('input', function() {
+        const results = searchNaics(this.value);
+        displayResults(results);
+    });
+
+    // New function to get query parameters from URL
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Function to perform search
+    function performSearch(query) {
+        searchInput.value = query;
+        const results = searchNaics(query);
+        displayResults(results);
+    }
+
+    // Check for NAICS code in URL on page load
+    window.addEventListener('load', function() {
+        const naicsCode = getQueryParam('naics');
+        if (naicsCode) {
+            performSearch(naicsCode);
         }
+    });
     </script>
 </body>
 </html>
