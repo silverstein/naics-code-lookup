@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAICS Code Search Tool</title>
+    <title>NAICS Code Lookup Tool</title>
     <style>
         :root {
             --bg-gradient: linear-gradient(135deg, #005847 0%, #007060 100%);
@@ -39,6 +39,7 @@
             color: var(--highlight-color);
             text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
+        p {padding-top: 10px;}
 
         #searchInput {
             width: 100%;
@@ -110,14 +111,17 @@
 
         @media (max-width: 768px) {
             h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
+            h2 {font-size: 1rem;}
         }
     </style>
 </head>
 <body>
-    <h1>NAICS Code Search Tool</h1>
+    <h1>NAICS Code Lookup Tool</h1>
     <input type="text" id="searchInput" placeholder="Search by NAICS code or title...">
+    <p><em>Type in a business type or NAICS code. Boom, instant results.</em>
+    </p>
     <div id="results"></div>
 
     <script>
