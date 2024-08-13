@@ -6,11 +6,12 @@
     <title>NAICS Code Search Tool</title>
     <style>
         :root {
-            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --text-color: #ffffff;
+            --bg-gradient: linear-gradient(135deg, #005847 0%, #007060 100%);
+            --text-color: #F6F6F6;
             --input-bg: rgba(255, 255, 255, 0.1);
             --result-bg: rgba(255, 255, 255, 0.05);
-            --highlight-color: #ffd700;
+            --highlight-color: #00f335;
+            --accent-color: #00f335;
         }
 
         * {
@@ -31,10 +32,12 @@
         }
 
         h1 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 30px;
             text-align: center;
             letter-spacing: 1px;
+            color: var(--highlight-color);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         #searchInput {
@@ -55,7 +58,7 @@
 
         #searchInput:focus {
             outline: none;
-            box-shadow: 0 0 0 3px var(--highlight-color);
+            box-shadow: 0 0 0 3px var(--accent-color);
         }
 
         #results {
@@ -80,7 +83,7 @@
 
         .result-item h3 {
             margin-bottom: 10px;
-            color: var(--highlight-color);
+            color: var(--accent-color);
         }
 
         .result-item p {
